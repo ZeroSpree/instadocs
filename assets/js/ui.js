@@ -224,8 +224,12 @@ function keyEvents(e){
 		if( $('#search').is(':focus') ) $('#search').val('').blur().trigger('keyup');
 		return;
 	}
+	
+	// If it wasn't an ESC key and forms are active, don't do anything
+	if( $('.overlay--visible').length || $('#search').is(':focus') ) return;
+	
 	// if everything's cool and a LETTER was pressed, start auto-search
-	else if (event.keyCode >= 65 && event.keyCode <= 90) {
+	if (event.keyCode >= 65 && event.keyCode <= 90) {
 		$('#search').focus();
 	}
 }
