@@ -12,4 +12,5 @@ Drag&Drop items or categories to sort them. You can even move an item from one c
 
 ### Extras
 **Autosearch:** no need to focus the search field, simply start typing and auto-search will kick-in.
+
 **ESC key:** Use it to quickly close modal windows or clear the search input.
