@@ -215,7 +215,7 @@ function keyEvents(e) {
   // handle ESC key
   if(e.keyCode == 27) {
     if($('.overlay--visible').length) closeOverlay();
-    if($('#search').is(':focus')) $('#search').val('').blur().trigger('keyup');
+    else $('#search').val('').blur().trigger('keyup');
     return;
   }
 
