@@ -230,19 +230,19 @@ function keyEvents(e) {
 function doSortable() {
   $('main')
     .sortable({
-      axis: 'y',
-      distance: 50,
-      update: function () {
+      axis   : 'y',
+      handle : '.js-sort-category-handle',
+      update : function () {
         refreshStorage();
       }
     });
 
   $('tbody')
     .sortable({
-      axis: 'y',
-      connectWith: 'tbody',
-      distance: 50,
-      update: function () {
+      axis        : 'y',
+      connectWith : 'tbody',
+      handle      : '.js-sort-item-handle',
+      update      : function () {
         refreshStorage();
       }
     });
@@ -286,23 +286,25 @@ function _item(itemTitle, itemDef, itemId) {
         <td class="item__description">' + itemTitle + '</td>\
         <td class="item__definition">' + linkify(itemDef) + '</td>\
         <td class="item__actions">\
-            <a href="javascript:;" class="material-icons button" data-overlay="item">edit</a>\
-            <a href="javascript:;" class="material-icons button" data-overlay="remove">delete</a>\
+          <a href="javascript:;" title="Reorder" class="material-icons button js-sort-item-handle cursor-handle">sort</a>\
+          <a href="javascript:;" title="Edit" class="material-icons button" data-overlay="item">edit</a>\
+          <a href="javascript:;" title="Remove" class="material-icons button" data-overlay="remove">delete</a>\
         </td>\
     </tr>';
 }
 
 function _category(categoryTitle, categoryId, categoryItems) {
   return '<table data-id="' + categoryId + '">\
-        <thead><tr><td colspan="3">\
-            <span>\
-                <strong>' + categoryTitle + '</strong>\
-                <a href="javascript:;" class="material-icons button" data-overlay="remove">delete</a>\
-                <a href="javascript:;" class="material-icons button" data-overlay="category">edit</a>\
-            </span>\
-            <a href="javascript:;" class="button float-right" data-overlay="item">Add Item</a>\
-        </td></tr></thead>\
-        <tbody>' + categoryItems + '</tbody>\
+      <thead><tr><td colspan="3">\
+        <span>\
+          <strong>' + categoryTitle + '</strong>\
+          <a href="javascript:;" title="Reorder" class="material-icons button js-sort-category-handle cursor-handle">sort</a>\
+          <a href="javascript:;" title="Edit" class="material-icons button" data-overlay="category">edit</a>\
+          <a href="javascript:;" title="Remove" class="material-icons button" data-overlay="remove">delete</a>\
+        </span>\
+        <a href="javascript:;" class="button float-right" data-overlay="item">Add Item</a>\
+      </td></tr></thead>\
+      <tbody>' + categoryItems + '</tbody>\
     </table>';
 }
 
