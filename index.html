@@ -15,14 +15,6 @@
       </form>
     </header>
 
-    <div class="overlay overlay--remove">
-      <form class="new" id="remove-form">
-        <input type="submit" class="button" value="You Sure?" />
-      </form>
-    </div>
-
-    <a class="material-icons button-raised" data-overlay="category" href="javascript:;" title="Add Category">add</a>
-
     <main></main>
 
     <div class="overlay overlay--category">
@@ -49,8 +41,16 @@
       </form>
     </div>
 
+    <div class="overlay overlay--remove">
+      <form class="new" id="remove-form">
+        <input type="submit" class="button" value="You Sure?" />
+      </form>
+    </div>
+
     <div class="clipboard-notice clipboard-notice--ok">Copied to Clipboard!</div>
     <div class="clipboard-notice clipboard-notice--fail">Failed to Copy! :((((</div>
+
+    <a class="material-icons button-raised" data-overlay="category" href="javascript:;" title="Add Category">add</a>
 
     <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
     <script src="https://code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
