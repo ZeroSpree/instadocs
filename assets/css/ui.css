@@ -85,7 +85,7 @@ tbody tr:last-child td{box-shadow:inset 0 1px 0 #dedede, inset 0 -1px 0 #dedede;
 .item__description {width:35%;-webkit-user-select:initial;-moz-user-select:initial;-ms-user-select:initial;user-select:initial;}
 .item__clipboard-copy{padding:0}
 .item__definition {width:100%;white-space:pre-wrap;-webkit-user-select:initial;-moz-user-select:initial;-ms-user-select:initial;user-select:initial;}
-.item__definition a {color:#3F51B5;font-weight:500;max-width:200px;overflow:hidden;display:inline-block;text-overflow:ellipsis;vertical-align:bottom;}
+.item__definition a {color:#3F51B5;font-weight:500;max-width:200px;overflow:hidden;display:inline-block;text-overflow:ellipsis;vertical-align:bottom;white-space:nowrap;}
 .item__actions{text-align:center;padding:0 8px;white-space:nowrap}
 
 .ui-sortable-placeholder {visibility:visible!important}
