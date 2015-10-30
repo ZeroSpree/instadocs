@@ -5,6 +5,9 @@ function linkify(text) {
     return '<a target="_blank" href="' + url + '">' + url + '</a>';
   });
 }
+function stripDoubleQuotes(text){
+  return text.replace(/"/g, '&quot;');
+}
 
 // Local Storage
 var app = {
@@ -280,10 +283,32 @@ function refreshStorage() {
   app.storage.setData();
 }
 
+// ZeroClipboard events
+// https://github.com/zeroclipboard/jquery.zeroclipboard
+var copyEvents = {
+  'copy' : function(e) {
+    e.clipboardData.clearData();
+    e.clipboardData.setData("text/plain", $(this).attr('data-zclip-text'));
+    e.preventDefault();
+  },
+  'aftercopy': function(e) {
+    var status = (e.success['text/plain'] === true) ? 'ok' : 'fail';
+
+    $('.clipboard-notice--'+status)
+      .stop()
+      .fadeIn(250, function(){
+        $(this).delay(500).fadeOut(250);
+      });
+  }
+};
+
 // Templates
 function _item(itemTitle, itemDef, itemId) {
   return '<tr class="item" id="' + itemId + '">\
         <td class="item__description">' + itemTitle + '</td>\
+        <td class="item__clipboard-copy">\
+          <a href="javascript:;" title="Copy to Clipboard" class="material-icons button zclip" data-zclip-text="'+stripDoubleQuotes(itemDef)+'">content_copy</a>\
+        </td>\
         <td class="item__definition">' + linkify(itemDef) + '</td>\
         <td class="item__actions">\
           <a href="javascript:;" title="Reorder" class="material-icons button js-sort-item-handle cursor-handle">sort</a>\
@@ -295,15 +320,19 @@ function _item(itemTitle, itemDef, itemId) {
 
 function _category(categoryTitle, categoryId, categoryItems) {
   return '<table data-id="' + categoryId + '">\
-      <thead><tr><td colspan="3">\
-        <span>\
-          <strong>' + categoryTitle + '</strong>\
-          <a href="javascript:;" title="Reorder" class="material-icons button js-sort-category-handle cursor-handle">sort</a>\
-          <a href="javascript:;" title="Edit" class="material-icons button" data-overlay="category">edit</a>\
-          <a href="javascript:;" title="Remove" class="material-icons button" data-overlay="remove">delete</a>\
-        </span>\
-        <a href="javascript:;" class="button float-right" data-overlay="item">Add Item</a>\
-      </td></tr></thead>\
+      <thead>\
+        <tr>\
+          <td colspan="4">\
+            <span>\
+              <strong>' + categoryTitle + '</strong>\
+              <a href="javascript:;" title="Reorder" class="material-icons button js-sort-category-handle cursor-handle">sort</a>\
+              <a href="javascript:;" title="Edit" class="material-icons button" data-overlay="category">edit</a>\
+              <a href="javascript:;" title="Remove" class="material-icons button" data-overlay="remove">delete</a>\
+            </span>\
+            <a href="javascript:;" class="button float-right" data-overlay="item">Add Item</a>\
+          </td>\
+        </tr>\
+      </thead>\
       <tbody>' + categoryItems + '</tbody>\
     </table>';
 }
@@ -321,4 +350,7 @@ $(function () {
   $('#category-form').on('submit', submitCategory);
   $('#item-form').on('submit', submitItem);
   $('#remove-form').on('submit', submitRemove);
+
+  // ZeroClipboard https://github.com/zeroclipboard/jquery.zeroclipboard
+  $('body').on(copyEvents, '.zclip');
 });
