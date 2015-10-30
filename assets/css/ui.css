@@ -50,11 +50,13 @@ a{text-decoration:none}
 .overlay .button{width:100%;border-radius:0;line-height:54px;}
 
 
-/* Header */
-header {position:fixed;top:0;left:0;right:0;padding:36px;background:#3F51B5;z-index:10}
-
+/* Copy Notices */
 .clipboard-notice{display:none;position:fixed;bottom:8px;left:50%;transform:translateX(-50%);padding:0 15px;line-height:36px;background:#8BC34A;color:#fff;border-radius:5px;}
 .clipboard-notice--fail {background:#FF4081}
+
+
+/* Header */
+header {position:fixed;top:0;left:0;right:0;padding:36px;background:#3F51B5;z-index:10}
 
 header ::-webkit-input-placeholder {color:#fff;font-weight:300;}
 header :-moz-placeholder {color:#fff;font-weight:300;}

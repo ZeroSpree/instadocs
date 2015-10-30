@@ -305,16 +305,16 @@ var copyEvents = {
 // Templates
 function _item(itemTitle, itemDef, itemId) {
   return '<tr class="item" id="' + itemId + '">\
-        <td class="item__description">' + itemTitle + '</td>\
-        <td class="item__clipboard-copy">\
-          <a href="javascript:;" title="Copy to Clipboard" class="material-icons button zclip" data-zclip-text="'+stripDoubleQuotes(itemDef)+'">content_copy</a>\
-        </td>\
-        <td class="item__definition">' + linkify(itemDef) + '</td>\
-        <td class="item__actions">\
-          <a href="javascript:;" title="Reorder" class="material-icons button js-sort-item-handle cursor-handle">sort</a>\
-          <a href="javascript:;" title="Edit" class="material-icons button" data-overlay="item">edit</a>\
-          <a href="javascript:;" title="Remove" class="material-icons button" data-overlay="remove">delete</a>\
-        </td>\
+      <td class="item__description">' + itemTitle + '</td>\
+      <td class="item__clipboard-copy">\
+        <a href="javascript:;" title="Copy to Clipboard" class="material-icons button zclip" data-zclip-text="'+stripDoubleQuotes(itemDef)+'">content_copy</a>\
+      </td>\
+      <td class="item__definition">' + linkify(itemDef) + '</td>\
+      <td class="item__actions">\
+        <a href="javascript:;" title="Reorder" class="material-icons button js-sort-item-handle cursor-handle">sort</a>\
+        <a href="javascript:;" title="Edit" class="material-icons button" data-overlay="item">edit</a>\
+        <a href="javascript:;" title="Remove" class="material-icons button" data-overlay="remove">delete</a>\
+      </td>\
     </tr>';
 }
 

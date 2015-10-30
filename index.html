@@ -2,23 +2,28 @@
 <html lang="en">
   <head>
     <title>InstaDocs!</title>
-
     <link rel="shortcut icon" href="favicon.ico" />
-
     <link rel="stylesheet" href="assets/css/ui.css">
     <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Roboto:300,400,500">
     <link rel="stylesheet" href="http://fonts.googleapis.com/icon?family=Material+Icons">
   </head>
 
   <body>
-    <div class="clipboard-notice clipboard-notice--ok">Copied to Clipboard!</div>
-    <div class="clipboard-notice clipboard-notice--fail">Failed to Copy! :((((</div>
-
     <header>
       <form onsubmit="return false;">
         <input type="text" id="search" placeholder="Search for something..." autocomplete="off" />
       </form>
     </header>
+
+    <div class="overlay overlay--remove">
+      <form class="new" id="remove-form">
+        <input type="submit" class="button" value="You Sure?" />
+      </form>
+    </div>
+
+    <a class="material-icons button-raised" data-overlay="category" href="javascript:;" title="Add Category">add</a>
+
+    <main></main>
 
     <div class="overlay overlay--category">
       <form class="new" id="category-form">
@@ -44,15 +49,8 @@
       </form>
     </div>
 
-    <div class="overlay overlay--remove">
-      <form class="new" id="remove-form">
-        <input type="submit" class="button" value="You Sure?" />
-      </form>
-    </div>
-
-    <a class="material-icons button-raised" data-overlay="category" href="javascript:;" title="Add Category">add</a>
-
-    <main></main>
+    <div class="clipboard-notice clipboard-notice--ok">Copied to Clipboard!</div>
+    <div class="clipboard-notice clipboard-notice--fail">Failed to Copy! :((((</div>
 
     <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
     <script src="https://code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>

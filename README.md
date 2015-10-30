@@ -11,10 +11,12 @@ Based on Fuse, by Kiro Risk (http://kiro.me/projects/fuse.html) - which means yo
 Easily organize your notes into categories.
 
 ### Reorder
-Drag&Drop items or categories to reorder them. You can even move an item from one category to another!
+Drag&Drop items or categories to reorder them or move items from one category to another.
 
 ### Extras
-**Autosearch:** no need to focus the search field, simply start typing and auto-search will kick-in.
+**Autosearch:** No need to focus the search field, simply start typing and auto-search will kick-in.
+
+**Copy to Clipboard:** The struggle ends with the convenient click-to-copy feature. (GitHub ssh style!)
 
 **ESC key:** Use it to quickly close modal windows or clear the search input.
 
