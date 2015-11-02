@@ -21,6 +21,7 @@ ul, li {margin:0;padding:0;list-style:none}
 .float-right{float:right}
 .cursor-handle{cursor:move}
 .pos-rel{position:relative}
+.mobile-hidden{display:none!important;}
 
 
 /* Buttons */
@@ -71,19 +72,26 @@ header :-ms-input-placeholder {color:#fff;font-weight:300;}
 
 /* Tables */
 table{width:100%;border-collapse:collapse;margin-top:36px;table-layout:fixed;}
+
+.dummy-single-action{width:36px;}
+.dummy-actions{width:52px;}
+.dummy-item{width:25%;}
+.dummy-definition{width:100%}
+
 thead{font-size:22px;font-weight:400;text-align:left;color:#000}
 thead .button {color:#FF4081}
 thead strong{font-weight:500;display:inline-block;padding:0 10px;white-space:nowrap;overflow:hidden;width:100%;box-sizing:border-box;
 text-overflow:ellipsis;vertical-align:bottom;}
-thead td{padding-bottom: 8px;}
+
 tbody:empty:before {content:'Nothing to see here...yet!';font-style:italic;color:rgba(0,0,0,.3);display:block;background:#EDEDED;
 line-height:47px;white-space:nowrap;margin-left:12px;}
 tbody td{padding:14px 8px;box-shadow:inset 0 1px 0 #eee;background:#fff;}
 tbody td:first-child{border-left:1px solid #dedede;padding-left:16px}
 tbody td:last-child{border-right:1px solid #dedede}
 tbody tr:last-child td{box-shadow:inset 0 1px 0 #dedede, inset 0 -1px 0 #dedede;}
+
 .item--hidden{display:none}
-.item__description {width:25%;-webkit-user-select:initial;-moz-user-select:initial;-ms-user-select:initial;user-select:initial;}
+.item__description {width:25%;overflow:hidden;text-overflow:ellipsis;-webkit-user-select:initial;-moz-user-select:initial;-ms-user-select:initial;user-select:initial;}
 .item__clipboard-copy{padding:0;width:36px;}
 .item__definition {width:100%;white-space:pre-wrap;-webkit-user-select:initial;-moz-user-select:initial;-ms-user-select:initial;user-select:initial;}
 .item__definition a {color:#3F51B5;font-weight:500;word-break:break-word}
@@ -109,6 +117,8 @@ table.ui-sortable-helper{opacity:.1}
   header{padding-left:16px;padding-right:16px}
   .material-icons.button-raised{right:16px}
   .new{left:16px;right:16px;}
+  .mobile-hidden{display:initial!important}
+  .dummy-actions{width:94px;}
 }
 @media (min-width: 1200px){
   body,
