@@ -302,18 +302,54 @@ var copyEvents = {
   }
 };
 
+// Item Menu Logic
+function toggleItemMenu(e){
+  var $trigger = $(e.target),
+      $menuPlaceholder = $trigger.siblings('.js--menu-placeholder'),
+      whichMenu = $trigger.attr('data-menu');
+
+  // Toggle menu if clicking on the same js--open-menu-item 2nd time
+  if($trigger.is('.js--open-item-menu') && $menuPlaceholder.find('.menu').length){
+    $('.menu').remove();
+  }
+  else if ($trigger.is('.js--open-item-menu')){
+    // Open new menu
+    $('.menu').remove();
+    $menuPlaceholder.html(_menu(whichMenu));
+    setTimeout(function(){
+      $menuPlaceholder.find('.menu').addClass('menu--active');
+    }, 1);
+
+  }
+  else {
+    // Remove menus when clicking outside .menu
+    if(!$trigger.closest('.menu').length){
+      $('.menu').remove();
+    }
+  }
+}
+
+function _menu(whichMenu){
+  return '<div class="menu">\
+        <ul>\
+          <li data-overlay="'+whichMenu+'"><a href="javascript:;" title="Edit" class="material-icons button">edit</a> Edit</li>\
+          <li data-overlay="remove"><a href="javascript:;" title="Remove" class="material-icons button">delete</a> Remove</li>\
+        </ul>\
+      </div>';
+}
+
 // Templates
 function _item(itemTitle, itemDef, itemId) {
   return '<tr class="item" id="' + itemId + '">\
-      <td class="item__description">' + itemTitle + '</td>\
+      <td class="item__description" colspan="2">' + itemTitle + '</td>\
       <td class="item__clipboard-copy">\
         <a href="javascript:;" title="Copy to Clipboard" class="material-icons button zclip" data-zclip-text="'+stripDoubleQuotes(itemDef)+'">content_copy</a>\
       </td>\
       <td class="item__definition">' + linkify(itemDef) + '</td>\
       <td class="item__actions">\
         <a href="javascript:;" title="Reorder" class="material-icons button js-sort-item-handle cursor-handle">sort</a>\
-        <a href="javascript:;" title="Edit" class="material-icons button" data-overlay="item">edit</a>\
-        <a href="javascript:;" title="Remove" class="material-icons button" data-overlay="remove">delete</a>\
+        <a href="javascript:;" class="material-icons button js--open-item-menu" data-menu="item">more_vert</a>\
+        <div class="pos-rel js--menu-placeholder"></div>\
       </td>\
     </tr>';
 }
@@ -322,14 +358,21 @@ function _category(categoryTitle, categoryId, categoryItems) {
   return '<table data-id="' + categoryId + '">\
       <thead>\
         <tr>\
-          <td colspan="4">\
-            <span>\
-              <strong>' + categoryTitle + '</strong>\
-              <a href="javascript:;" title="Reorder" class="material-icons button js-sort-category-handle cursor-handle">sort</a>\
-              <a href="javascript:;" title="Edit" class="material-icons button" data-overlay="category">edit</a>\
-              <a href="javascript:;" title="Remove" class="material-icons button" data-overlay="remove">delete</a>\
-            </span>\
-            <a href="javascript:;" class="button float-right" data-overlay="item">Add Item</a>\
+          <td width="36px"></td>\
+          <td width="25%"></td>\
+          <td width="36px"></td>\
+          <td width="100%"></td>\
+          <td width="88px"></td>\
+        </tr>\
+        <tr>\
+          <td width="36"><a href="javascript:;" class="button material-icons" data-overlay="item">add</a>\</td>\
+          <td colspan="3">\
+            <strong>' + categoryTitle + '</strong>\
+          </td>\
+          <td class="item__actions" width="72">\
+            <a href="javascript:;" title="Reorder" class="material-icons button js-sort-category-handle cursor-handle">sort</a>\
+            <a href="javascript:;" class="material-icons button js--open-item-menu" data-menu="category">more_vert</a>\
+            <div class="pos-rel js--menu-placeholder"></div>\
           </td>\
         </tr>\
       </thead>\
@@ -347,6 +390,7 @@ $(function () {
   // Events
   $('body').on('click', '[data-overlay]', toggleOverlay);
   $('body').on('keydown', keyEvents);
+  $('body').on('click', toggleItemMenu);
   $('#category-form').on('submit', submitCategory);
   $('#item-form').on('submit', submitItem);
   $('#remove-form').on('submit', submitRemove);
